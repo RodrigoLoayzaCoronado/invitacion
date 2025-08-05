@@ -115,7 +115,8 @@ const RSVP = () => {
           </span>
         </h2>
         <p className="text-xl md:text-2xl text-gray-300 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-          ¡No te pierdas la fiesta del año!
+          ¡Eh! ¡Eh! 
+          ¡Eh! ¡Eh! 
         </p>
       </div>
 
