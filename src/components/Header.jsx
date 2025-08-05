@@ -1,14 +1,17 @@
 import React from 'react';
 import ModelViewer from './ModelViewer';
-import ParticlesBackground from './ParticlesBackground';
+// Eliminamos la importación de ParticlesBackground aquí, ya que se moverá a App.jsx
+// import ParticlesBackground from './ParticlesBackground'; 
 
 const Header = () => {
   return (
     <header className="w-screen h-screen relative overflow-hidden">
-      {/* Capa de partículas de fondo */}
-      <div className="absolute inset-0 z-[2]">
+      {/* La capa de partículas de fondo se ha movido a App.jsx para que se vea en todo el sitio.
+        Eliminamos este div que contenía ParticlesBackground.
+      */}
+      {/* <div className="absolute inset-0 z-[2]">
         <ParticlesBackground />
-      </div>
+      </div> */}
       
       {/* Layout principal - Desktop: lado a lado, Mobile: vertical */}
       <div className="absolute inset-0 z-10 flex flex-col lg:flex-row">
@@ -66,9 +69,6 @@ const Header = () => {
             <div className="w-0.5 h-2 bg-white/60 rounded-full mt-1 animate-bounce"></div>
           </div>
         </div>
-        
-        
-        
         
       </div>
       

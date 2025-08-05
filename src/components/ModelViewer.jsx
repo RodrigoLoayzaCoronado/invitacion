@@ -24,7 +24,7 @@ const Particles3D = () => {
     }
     
     return { positions, colors };
-  }, []);
+  }, [count]); // Añadir count a las dependencias de useMemo
   
   useFrame((state) => {
     if (meshRef.current) {
@@ -101,7 +101,7 @@ const EnergyOrbs = () => {
   );
 };
 
-// Tu modelo principal con mejor iluminación
+// Tu modelo principal con rotación automática y sin interacción del usuario
 const Model = () => {
   const gltf = useGLTF('/model.glb'); // Mantén tu ruta original
   const modelRef = useRef();
@@ -110,8 +110,8 @@ const Model = () => {
     if (modelRef.current) {
       // Suave flotación del modelo
       modelRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.05;
-      // Rotación muy sutil
-      modelRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.2) * 0.02;
+      // Rotación leve y continua en el eje Y
+      modelRef.current.rotation.y += 0.005; // Ajusta este valor para una rotación más rápida o lenta
     }
   });
   
@@ -233,27 +233,22 @@ const ModelViewer = () => {
         {/* Tu modelo principal */}
         <Model />
         
-        {/* Controles de cámara optimizados */}
+        {/* Controles de cámara: Deshabilitados para interacción del usuario */}
         <OrbitControls
-          enableZoom={false}
-          enablePan={false}
+          enableRotate={false} // Deshabilita la rotación con el ratón/tacto
+          enableZoom={false}   // Deshabilita el zoom con la rueda del ratón/pellizco
+          enablePan={false}    // Deshabilita el paneo (movimiento lateral)
           enableDamping={true}
           dampingFactor={0.03}
           maxPolarAngle={Math.PI / 1.8}
           minPolarAngle={Math.PI / 4}
-          autoRotate={false}
+          autoRotate={false} // Mantén esto en false, la rotación la maneja el modelo directamente
           maxDistance={6}
           minDistance={1.5}
           target={[0, 0, 0]}
-          mouseButtons={{
-            LEFT: 0, // Permite rotación con clic izquierdo
-            MIDDLE: undefined, // Desactiva zoom con scroll
-            RIGHT: undefined // Desactiva pan con clic derecho
-          }}
-          touches={{
-            ONE: 0, // Rotación con un dedo en móvil
-            TWO: undefined // Desactiva zoom con pellizco
-          }}
+          // Eliminar o establecer a undefined los mouseButtons y touches para asegurar que no haya interacción
+          mouseButtons={undefined} 
+          touches={undefined}
         />
         
         {/* Ambiente y post-procesado */}
