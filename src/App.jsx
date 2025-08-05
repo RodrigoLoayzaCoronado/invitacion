@@ -15,11 +15,7 @@ function App() {
 
   return (
     <div className="min-h-screen relative bg-gray-900 overflow-x-hidden">
-      {/* Fondo animado principal (ParticlesBackground) */}
-      <div className="absolute inset-0 z-0">
-        <ParticlesBackground />
-      </div>
-
+      
       {/* Capas de fondo adicionales (gradientes, blurs) */}
       <div className="absolute inset-0 z-[1]">
         <div className="w-full h-full bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
