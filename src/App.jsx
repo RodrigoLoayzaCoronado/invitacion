@@ -1,22 +1,27 @@
-import React from 'react';
+import React, { Suspense, lazy, useRef } from 'react'; // Importamos useRef
 import Header from './components/Header';
 import Card from './components/Card';
 import PDFDownload from './components/PdfDownload';
 import RSVP from './components/Confirmacion';
-import ParticlesBackground from './components/ParticlesBackground'; // Importamos ParticlesBackground
+import ParticlesBackground from './components/ParticlesBackground';
+
+// Carga perezosa del ModelViewer
+const LazyModelViewer = lazy(() => import('./components/ModelViewer'));
 
 function App() {
+  // Creamos referencias para las secciones a las que queremos desplazarnos
+  const rsvpRef = useRef(null);
+  const cardsRef = useRef(null);
+
   return (
     <div className="min-h-screen relative bg-gray-900 overflow-x-hidden">
       {/* Fondo animado principal (ParticlesBackground) */}
-      {/* Lo colocamos aquí para que cubra todo el sitio */}
       <div className="absolute inset-0 z-0">
         <ParticlesBackground />
       </div>
 
       {/* Capas de fondo adicionales (gradientes, blurs) */}
-      {/* Asegúrate de que estas capas tengan un z-index adecuado si quieres que estén sobre las partículas */}
-      <div className="absolute inset-0 z-[1]"> {/* Cambiado a z-[1] para estar sobre las partículas pero debajo del contenido principal */}
+      <div className="absolute inset-0 z-[1]">
         <div className="w-full h-full bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_rgba(0,0,0,0.3)_100%)]" />
@@ -26,16 +31,15 @@ function App() {
       </div>
 
       {/* Contenido principal del sitio web */}
-      {/* Este div contendrá todo el contenido visible (Header, Cards, etc.) y debe tener un z-index más alto */}
-      <div className="relative z-10"> {/* Aseguramos que el contenido principal esté por encima de los fondos */}
-        {/* Header */}
-        <Header />
+      <div className="relative z-10">
+        {/* Pasamos las referencias a Header como props */}
+        <Header LazyModelViewer={LazyModelViewer} rsvpRef={rsvpRef} cardsRef={cardsRef} />
         
-        {/* Sección de Cards de información */}
-        <section className="flex justify-around p-4 relative overflow-auto max-w-screen-lg mx-auto flex-wrap gap-4">
-          <Card image="img/edit2.png" rarityScore="Imbox si quieres previa" subtitle="Buho bar" title="LUGAR" />
-          <Card image="img/edit5.png" rarityScore="20:00 hora Boliviana" subtitle="aqui algo mas" title="HORA" />
-          <Card image="img/edit3.png" rarityScore="calle aniceto arce" subtitle="algo mas aqui" title="UBICACIÓN" />
+        {/* Sección de Cards de información - Adjuntamos la referencia 'cardsRef' */}
+        <section ref={cardsRef} className="flex justify-around p-4 relative overflow-auto max-w-screen-lg mx-auto flex-wrap gap-4">
+          <Card image="img/edit2.png" rarityScore="Buho Bar" subtitle="Imbox para la Previa" title="LUGAR" />
+          <Card image="img/edit5.png" rarityScore="20:00 para los puntuales" subtitle="21:30 maximo hora Boliviana" title="HORA" />
+          <Card image="img/edit3.png" rarityScore="Todos conocen Buho" subtitle="Donde Siempre" title="UBICACIÓN" />
         </section>
 
         {/* Separador visual */}
@@ -53,8 +57,8 @@ function App() {
           <div className="w-32 h-px bg-gradient-to-r from-transparent via-emerald-500 to-transparent"></div>
         </div>
 
-        {/* Sección de confirmación de asistencia */}
-        <section>
+        {/* Sección de confirmación de asistencia - Adjuntamos la referencia 'rsvpRef' */}
+        <section ref={rsvpRef}>
           <RSVP />
         </section>
 
@@ -67,7 +71,7 @@ function App() {
               <span className="text-4xl animate-float" style={{ animationDelay: '1s' }}>🎁</span>
             </div>
             <p className="text-gray-400 text-sm">
-              © 2025 - ¡La mejor fiesta del año te está esperando!
+              © 2025 - ¡Para la Anecdota!
             </p>
           </div>
         </footer>

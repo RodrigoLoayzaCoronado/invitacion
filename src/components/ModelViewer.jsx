@@ -215,20 +215,9 @@ const ModelViewer = () => {
           color="#a855f7"
         />
         
-        {/* Campo de estrellas de fondo (reducido) */}
-        <Stars
-          radius={80}
-          depth={40}
-          count={3000}
-          factor={3}
-          saturation={0}
-          fade
-          speed={0.3}
-        />
         
-        {/* Elementos 3D de fondo */}
-        <Particles3D />
-        <EnergyOrbs />
+        
+       
         
         {/* Tu modelo principal */}
         <Model />

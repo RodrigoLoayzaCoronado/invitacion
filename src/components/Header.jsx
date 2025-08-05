@@ -1,18 +1,23 @@
-import React from 'react';
-import ModelViewer from './ModelViewer';
-// Eliminamos la importación de ParticlesBackground aquí, ya que se moverá a App.jsx
-// import ParticlesBackground from './ParticlesBackground'; 
+import React, { Suspense } from 'react';
 
-const Header = () => {
+// Recibimos LazyModelViewer, rsvpRef y cardsRef como props
+const Header = ({ LazyModelViewer, rsvpRef, cardsRef }) => { 
+  // Función para desplazarse al formulario RSVP
+  const scrollToRSVP = () => {
+    if (rsvpRef.current) {
+      rsvpRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  // Función para desplazarse a la sección de Cards
+  const scrollToCards = () => {
+    if (cardsRef.current) {
+      cardsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <header className="w-screen h-screen relative overflow-hidden">
-      {/* La capa de partículas de fondo se ha movido a App.jsx para que se vea en todo el sitio.
-        Eliminamos este div que contenía ParticlesBackground.
-      */}
-      {/* <div className="absolute inset-0 z-[2]">
-        <ParticlesBackground />
-      </div> */}
-      
       {/* Layout principal - Desktop: lado a lado, Mobile: vertical */}
       <div className="absolute inset-0 z-10 flex flex-col lg:flex-row">
         {/* Sección de texto - Izquierda en desktop, arriba en mobile */}
@@ -34,12 +39,18 @@ const Header = () => {
               Para acompañarme en mi fiesta de cumpleaños.
             </p>
             
-            {/* Botones opcionales */}
+            {/* Botones con onClick handlers */}
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: '1s' }}>
-              <button className="pointer-events-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 animate-glow-pulse">
+              <button 
+                onClick={scrollToRSVP} // Llama a la función de scroll
+                className="pointer-events-auto px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 animate-glow-pulse"
+              >
                 DE UNA
               </button>
-              <button className="pointer-events-auto px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
+              <button 
+                onClick={scrollToCards} // Llama a la función de scroll
+                className="pointer-events-auto px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+              >
                 Mas info no me convence
               </button>
             </div>
@@ -48,7 +59,19 @@ const Header = () => {
         
         {/* Sección del modelo 3D - Derecha en desktop, abajo en mobile */}
         <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative">
-          <ModelViewer />
+          {/* Usamos Suspense para mostrar un fallback mientras LazyModelViewer carga */}
+          <Suspense fallback={
+            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
+              <div className="text-white text-lg sm:text-xl font-light tracking-wide">
+                <div className="flex items-center space-x-3">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+                  <span>Cargando 3D...</span>
+                </div>
+              </div>
+            </div>
+          }>
+            <LazyModelViewer /> {/* Renderizamos el componente de carga perezosa */}
+          </Suspense>
           
           {/* Overlay sutil para el modelo en mobile */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent lg:hidden pointer-events-none"></div>
