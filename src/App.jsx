@@ -33,7 +33,7 @@ function App() {
         
         {/* Sección de Cards de información - Adjuntamos la referencia 'cardsRef' */}
         <section ref={cardsRef} className="flex justify-around p-4 relative overflow-auto max-w-screen-lg mx-auto flex-wrap gap-4">
-          <Card image="img/edit2.png" rarityScore="Buho Bar" subtitle="Imbox para la Previa" title="LUGAR" />
+          <Card image="img/edit2.png" rarityScore="Sabado 9 de agosto" subtitle="Imbox para la Previa" title="DÍA" />
           <Card image="img/edit5.png" rarityScore="20:00 para los puntuales" subtitle="21:30 maximo hora Boliviana" title="HORA" />
           <Card image="img/edit3.png" rarityScore="Todos conocen Buho" subtitle="Donde Siempre" title="UBICACIÓN" />
         </section>
