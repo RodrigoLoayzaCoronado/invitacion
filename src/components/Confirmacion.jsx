@@ -38,8 +38,8 @@ const RSVP = () => {
 
     // Preparar mensaje para Telegram
     // Preparar mensaje para Telegram usando variables de entorno
-    const token = process.env.REACT_APP_TELEGRAM_TOKEN;
-    const chatId = process.env.REACT_APP_TELEGRAM_CHAT_ID;
+    const token ='7865624058:AAFSc6xbVgr30BgxrDhc0IP1jEXR_67vN_4';
+    const chatId = '863067996';
     const telegramMessage = `
       🎉 Nueva confirmación de asistencia:
       - Nombre: ${formData.nombre}
