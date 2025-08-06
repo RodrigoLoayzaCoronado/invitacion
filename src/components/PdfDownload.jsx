@@ -4,8 +4,8 @@ const PDFDownload = () => {
   const handleDownloadPDF = () => {
     // Lógica para descargar el PDF
     const link = document.createElement('a');
-    link.href = '/permiso-cumpleanos.pdf'; // Cambia por la ruta de tu PDF
-    link.download = 'permiso-cumpleanos.pdf';
+    link.href = '/pdf/solicitud.pdf'; // Cambia por la ruta de tu PDF
+    link.download = 'solicitud.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

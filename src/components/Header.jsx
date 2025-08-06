@@ -1,7 +1,7 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-// Recibimos LazyModelViewer, rsvpRef y cardsRef como props
-const Header = ({ LazyModelViewer, rsvpRef, cardsRef }) => { 
+// Recibimos rsvpRef y cardsRef como props
+const Header = ({ rsvpRef, cardsRef }) => { 
   // Función para desplazarse al formulario RSVP
   const scrollToRSVP = () => {
     if (rsvpRef.current) {
@@ -49,7 +49,7 @@ const Header = ({ LazyModelViewer, rsvpRef, cardsRef }) => {
               </button>
               <button 
                 onClick={scrollToCards} // Llama a la función de scroll
-                className="pointer-events-auto px-6 py-3 border-2 border-white/30 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+                className="pointer-events-auto px-6 py-3 bg-gray-800/50 border-2 border-white/50 text-gray-80 font-semibold rounded-full hover:bg-gray-700/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
               >
                 Mas info no me convence
               </button>
@@ -57,25 +57,18 @@ const Header = ({ LazyModelViewer, rsvpRef, cardsRef }) => {
           </div>
         </div>
         
-        {/* Sección del modelo 3D - Derecha en desktop, abajo en mobile */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative">
-          {/* Usamos Suspense para mostrar un fallback mientras LazyModelViewer carga */}
-          <Suspense fallback={
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50">
-              <div className="text-white text-lg sm:text-xl font-light tracking-wide">
-                <div className="flex items-center space-x-3">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 border-2 border-blue-400 border-t-transparent rounded-full animate-spin"></div>
-                  <span>Cargando 3D...</span>
-                </div>
-              </div>
-            </div>
-          }>
-            <LazyModelViewer /> {/* Renderizamos el componente de carga perezosa */}
-          </Suspense>
-          
-          {/* Overlay sutil para el modelo en mobile */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent lg:hidden pointer-events-none"></div>
-        </div>
+        {/* Sección de la imagen - Derecha en desktop, abajo en mobile */}
+          <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex items-center justify-center">
+            <img
+              src="/img/funjo1.png" // Ruta de tu imagen
+              alt="Invitación visual"
+              className="max-w-full max-h-full w-auto h-auto lg:w-3/4 lg:h-3/4 object-contain rounded-lg lg:rounded-none shadow-lg"
+              loading="lazy"
+            />
+            
+            {/* Overlay sutil para la imagen en mobile */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent lg:hidden pointer-events-none"></div>
+          </div>
       </div>
       
       {/* Elementos decorativos adicionales */}
@@ -92,7 +85,6 @@ const Header = ({ LazyModelViewer, rsvpRef, cardsRef }) => {
             <div className="w-0.5 h-2 bg-white/60 rounded-full mt-1 animate-bounce"></div>
           </div>
         </div>
-        
       </div>
       
       {/* Efectos de borde */}

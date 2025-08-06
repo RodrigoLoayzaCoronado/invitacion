@@ -15,8 +15,7 @@ function App() {
 
   return (
     <div className="min-h-screen relative bg-gray-900 overflow-x-hidden">
-      
-      {/* Capas de fondo adicionales (gradientes, blurs) */}
+      {/* Capas de fondo adicionales (gradientes, blurs) y ParticlesBackground */}
       <div className="absolute inset-0 z-[1]">
         <div className="w-full h-full bg-gradient-to-br from-[#0a0a0a] via-[#1a1a2e] via-[#16213e] to-[#0f3460]" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
@@ -24,12 +23,13 @@ function App() {
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <ParticlesBackground /> {/* Añadido aquí para cubrir toda la pantalla */}
       </div>
 
       {/* Contenido principal del sitio web */}
       <div className="relative z-10">
         {/* Pasamos las referencias a Header como props */}
-        <Header LazyModelViewer={LazyModelViewer} rsvpRef={rsvpRef} cardsRef={cardsRef} />
+        <Header rsvpRef={rsvpRef} cardsRef={cardsRef} />
         
         {/* Sección de Cards de información - Adjuntamos la referencia 'cardsRef' */}
         <section ref={cardsRef} className="flex justify-around p-4 relative overflow-auto max-w-screen-lg mx-auto flex-wrap gap-4">
