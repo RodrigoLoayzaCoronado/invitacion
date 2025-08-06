@@ -49,7 +49,7 @@ const Header = ({ rsvpRef, cardsRef }) => {
               </button>
               <button 
                 onClick={scrollToCards} // Llama a la función de scroll
-                className="pointer-events-auto px-6 py-3 bg-gray-800/50 border-2 border-white/50 text-gray-800 font-semibold rounded-full hover:bg-gray-700/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
+                className="pointer-events-auto px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 border-2 border-orange-400/50 text-white font-semibold rounded-full hover:from-orange-600 hover:to-red-600 hover:border-orange-300 transition-all duration-300 transform hover:scale-105 backdrop-blur-sm shadow-lg shadow-orange-500/25"
               >
                 Mas info no me convence
               </button>
@@ -58,28 +58,28 @@ const Header = ({ rsvpRef, cardsRef }) => {
         </div>
         
         {/* Sección de la imagen - Derecha en desktop, abajo en mobile */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex flex-col items-center justify-center p-4 lg:p-5">
-          {/* Texto "CUMPLE DE RODRI!" - Encima de la imagen con espacio adecuado */}
-          <div className="text-center mb-5 lg:mb-5 animate-fade-in" style={{ animationDelay: '0.5s' }}>
-            <h2 className="text-x2 sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex flex-col items-center justify-center p-4 lg:p-8">
+          {/* Texto "CUMPLE DE RODRI!" - Más pegado a la imagen */}
+          <div className="text-center mb-2 lg:mb-4 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-1 lg:mb-2">
               CUMPLE DE RODRI!
             </h2>
-            <div className="flex justify-center space-x-2">
-              <span className="text-xl sm:text-2xl md:text-3xl animate-float" style={{ animationDelay: '0.5s' }}>🎉</span>
-              <span className="text-xl sm:text-2xl md:text-3xl animate-float" style={{ animationDelay: '1s' }}>🎁</span>
+            <div className="flex justify-center space-x-2 lg:space-x-4">
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl animate-float" style={{ animationDelay: '0.5s' }}>🎉</span>
+              <span className="text-lg sm:text-xl md:text-2xl lg:text-4xl xl:text-5xl animate-float" style={{ animationDelay: '1s' }}>🎁</span>
             </div>
           </div>
           
-          {/* Contenedor de la imagen - Con espacio calculado */}
+          {/* Contenedor de la imagen - Centrado y más grande en desktop */}
           <div className="flex-1 flex items-center justify-center max-w-full max-h-full">
             <img
               src="/img/funjo1.png"
               alt="Invitación visual"
-              className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl object-contain rounded-lg shadow-lg animate-float transition-all duration-300"
+              className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-2xl xl:max-w-3xl h-auto object-contain rounded-lg shadow-lg animate-float transition-all duration-300"
               loading="lazy"
               style={{
                 animation: 'float 3s ease-in-out infinite',
-                maxHeight: 'calc(100% - 60px)' // Reserva espacio para el texto superior
+                maxHeight: 'calc(100% - 80px)' // Espacio ajustado para desktop
               }}
             />
           </div>
