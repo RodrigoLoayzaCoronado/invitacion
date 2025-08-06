@@ -69,3 +69,11 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px); /* Movimiento hacia arriba de 10px */
+  }
+}

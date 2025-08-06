@@ -49,7 +49,7 @@ const Header = ({ rsvpRef, cardsRef }) => {
               </button>
               <button 
                 onClick={scrollToCards} // Llama a la función de scroll
-                className="pointer-events-auto px-6 py-3 bg-gray-800/50 border-2 border-white/50 text-gray-80 font-semibold rounded-full hover:bg-gray-700/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
+                className="pointer-events-auto px-6 py-3 bg-gray-800/50 border-2 border-white/50 text-gray-800 font-semibold rounded-full hover:bg-gray-700/70 hover:text-white transition-all duration-300 backdrop-blur-sm"
               >
                 Mas info no me convence
               </button>
@@ -58,33 +58,41 @@ const Header = ({ rsvpRef, cardsRef }) => {
         </div>
         
         {/* Sección de la imagen - Derecha en desktop, abajo en mobile */}
-          <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex items-center justify-center">
-            <img
-              src="/img/funjo1.png" // Ruta de tu imagen
-              alt="Invitación visual"
-              className="max-w-full max-h-full w-auto h-auto lg:w-3/4 lg:h-3/4 object-contain rounded-lg lg:rounded-none shadow-lg"
-              loading="lazy"
-            />
-            
-            {/* Overlay sutil para la imagen en mobile */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent lg:hidden pointer-events-none"></div>
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex flex-col items-center justify-center p-4 lg:p-5">
+          {/* Texto "CUMPLE DE RODRI!" - Encima de la imagen con espacio adecuado */}
+          <div className="text-center mb-5 lg:mb-5 animate-fade-in" style={{ animationDelay: '0.5s' }}>
+            <h2 className="text-x2 sm:text-2xl md:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent mb-2">
+              CUMPLE DE RODRI!
+            </h2>
+            <div className="flex justify-center space-x-2">
+              <span className="text-xl sm:text-2xl md:text-3xl animate-float" style={{ animationDelay: '0.5s' }}>🎉</span>
+              <span className="text-xl sm:text-2xl md:text-3xl animate-float" style={{ animationDelay: '1s' }}>🎁</span>
+            </div>
           </div>
+          
+          {/* Contenedor de la imagen - Con espacio calculado */}
+          <div className="flex-1 flex items-center justify-center max-w-full max-h-full">
+            <img
+              src="/img/funjo1.png"
+              alt="Invitación visual"
+              className="max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl object-contain rounded-lg shadow-lg animate-float transition-all duration-300"
+              loading="lazy"
+              style={{
+                animation: 'float 3s ease-in-out infinite',
+                maxHeight: 'calc(100% - 60px)' // Reserva espacio para el texto superior
+              }}
+            />
+          </div>
+          
+          {/* Overlay sutil para la imagen en mobile */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent lg:hidden pointer-events-none"></div>
+        </div>
       </div>
       
       {/* Elementos decorativos adicionales */}
       <div className="absolute inset-0 z-20 pointer-events-none">
         {/* Separador visual en desktop */}
         <div className="hidden lg:block absolute top-1/4 left-1/2 w-px h-1/2 bg-gradient-to-b from-transparent via-white/20 to-transparent transform -translate-x-1/2"></div>
-        
-        {/* Indicador de scroll en mobile */}
-        <div className="lg:hidden absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-2 animate-fade-in" style={{ animationDelay: '1.5s' }}>
-          <div className="text-white/60 text-xs text-center">
-            Toca para interactuar
-          </div>
-          <div className="w-4 h-6 border border-white/30 rounded-full flex justify-center">
-            <div className="w-0.5 h-2 bg-white/60 rounded-full mt-1 animate-bounce"></div>
-          </div>
-        </div>
       </div>
       
       {/* Efectos de borde */}
